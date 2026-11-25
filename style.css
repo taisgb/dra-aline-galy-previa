@@ -543,3 +543,79 @@ footer { margin-top:0; }
     padding-top:94px;
   }
 }
+
+
+/* V13 — Pediatria Editorial Orgânica
+   Seções são faixas contínuas; arredondamento, elevação e relevo pertencem aos componentes.
+   A atmosfera e a paleta de cada profissional permanecem. */
+main > section, footer {
+  border-radius: 0;
+  box-shadow: none;
+}
+main > .hero-shell, main > .stages, main > .process,
+main > .review, main > .final-cta {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+main > .hero-shell { overflow: hidden; }
+main > .stages, main > .process, main > .review { overflow: visible; }
+main > .final-cta { overflow: hidden; }
+/* O fundo ocupa a largura da tela, mas o conteúdo continua na grade. */
+main > .about, main > .clinic, main > .faq {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: max(48px, calc((100% - 1180px) / 2));
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: var(--paper);
+  background-image: radial-gradient(ellipse at 12% 44%, var(--p-light), transparent 60%);
+}
+main > .clinic { background-image: radial-gradient(ellipse at 92% 12%, var(--p-light), transparent 60%); }
+main > .faq { background-image: radial-gradient(ellipse at 8% 90%, var(--p-light), transparent 60%); }
+main > .trust {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 26px max(48px, calc((100% - 1180px) / 2));
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: var(--sage);
+  background-image: linear-gradient(180deg, transparent, var(--paper));
+}
+main > .trust > div { min-width: 0; }
+main > .stages {
+  background-color: var(--paper);
+  background-image: radial-gradient(ellipse at 95% 26%, var(--p-wash), transparent 56%), linear-gradient(180deg, var(--paper), var(--paper));
+}
+main > .process {
+  background-color: var(--process);
+  background-image: radial-gradient(ellipse at 8% 8%, var(--paper), transparent 60%), linear-gradient(180deg, var(--paper), var(--process) 38%, var(--paper));
+}
+main > .review {
+  background-color: var(--paper);
+  background-image: radial-gradient(ellipse at 80% 50%, var(--stage-four), transparent 85%), linear-gradient(180deg,var(--paper),var(--p-wash) 50%,var(--paper));
+}
+footer { margin-top: 0; border-radius: 0; }
+/* Sombras e raios de cards, botões, retratos e menu são preservados. */
+@media (min-width: 801px) {
+  main > .hero-shell .hero { padding-top: 108px; }
+}
+@media (max-width: 1000px) {
+  main > .about, main > .clinic, main > .faq { padding-inline: 24px; }
+  main > .trust { padding-inline: 24px; }
+}
+@media (max-width: 800px) {
+  .header.wrap { position: absolute; top: 10px; left: 0; right: 0; margin: 0 auto; }
+  main > .hero-shell .hero { padding-top: 94px; }
+  main > .about, main > .clinic, main > .faq { padding-inline: 20px; }
+  main > .trust { padding: 20px; }
+}
+@media (max-width: 480px) {
+  main > .trust { padding: 16px 20px; }
+}
