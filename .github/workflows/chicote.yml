@@ -1,0 +1,48 @@
+name: Auditoria Chicote
+on:
+  push:
+    branches: [main]
+    paths: ['index.html', 'style.css', 'palette.css', 'script.js', '.github/workflows/chicote.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar Chicote (versão fixa)
+        run: |
+          git clone https://github.com/matheusmongarde/chicote.git "$RUNNER_TEMP/chicote"
+          git -C "$RUNNER_TEMP/chicote" checkout ce3d39d9d08b628fa03bc26ef2d350ee0266dde3
+          cd "$RUNNER_TEMP/chicote"
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Auditar baseline e versão atual
+        run: |
+          mkdir -p "$RUNNER_TEMP/baseline" reports
+          git archive 9c6a77397bbb23e3867c0f918470944e85d89881 | tar -x -C "$RUNNER_TEMP/baseline"
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory "$RUNNER_TEMP/baseline" >/tmp/baseline-http.log 2>&1 &
+          python3 -m http.server 8766 --bind 127.0.0.1 --directory "$GITHUB_WORKSPACE" >/tmp/current-http.log 2>&1 &
+          for alvo in antes depois; do
+            port=8765
+            [ "$alvo" = depois ] && port=8766
+            rc=0
+            node "$RUNNER_TEMP/chicote/scripts/chicotada.mjs" "http://127.0.0.1:$port/" --publico geral --aparelho fraco --saida "reports/$alvo" || rc=$?
+            test -s "reports/$alvo/relatorio.json"
+            if [ "$rc" != 0 ] && [ "$rc" != 3 ]; then exit "$rc"; fi
+          done
+          node -e 'const fs=require("fs"); const a=JSON.parse(fs.readFileSync("reports/antes/relatorio.json")); const d=JSON.parse(fs.readFileSync("reports/depois/relatorio.json")); console.log("ANTES",a.notaPortoes,"DEPOIS",d.notaPortoes); console.table(d.portoes.map(p=>({id:p.id,antes:a.portoes.find(x=>x.id===p.id)?.pontos,depois:p.pontos,max:p.max})))'
+          cat reports/antes/relatorio.md reports/depois/relatorio.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chicote-antes-depois
+          path: reports/
