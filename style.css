@@ -523,3 +523,23 @@ footer { margin-top:0; }
   .about .about-portrait { border-radius:28px 60px 22px 22px; }
   .review-rating .textlink { width:auto; }
 }
+
+
+/* V12.3 — hero de ponta a ponta, com topo reto e navegação sobreposta. */
+.hero-shell {
+  width:100%;
+  margin:0;
+  border-radius:0;
+}
+@media (max-width:800px) {
+  .header.wrap {
+    position:absolute;
+    top:10px;
+    left:0;
+    right:0;
+    margin:0 auto;
+  }
+  .hero-shell .hero {
+    padding-top:94px;
+  }
+}
