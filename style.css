@@ -9,3 +9,153 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}.js .reveal{opacity:1!important;transform:none!important}}
 
 .floating svg{fill:none;stroke:currentColor;stroke-width:1.8}
+
+
+/* V2 — refinamento da hero: menos peso visual, enquadramento melhor da foto e menos sensação de transparência */
+.hero-shell{
+  background: linear-gradient(180deg, var(--bg) 0%, #f4e7d4 100%);
+}
+
+.hero-shell:before,
+.hero-shell:after{
+  opacity: .38;
+}
+
+.hero{
+  align-items: center;
+}
+
+.hero-copy{
+  padding-bottom: 46px;
+}
+
+.hero-art{
+  max-width: 520px;
+  min-height: 0;
+  align-self: center;
+  padding: 14px 18px 46px;
+}
+
+.shape-back{
+  inset: 12% 3% 10%;
+  background: #ead9be;
+  border: 2px solid #315d4e;
+  border-radius: 42px 88px 42px 42px / 48px 90px 44px 44px;
+  transform: none;
+}
+
+.portrait{
+  max-width: 362px;
+  aspect-ratio: 4 / 4.35;
+  background: #f7ebdb;
+  border: 1px solid #315d4e14;
+  border-radius: 34px 86px 30px 30px;
+  box-shadow: 0 12px 28px #263d3418;
+}
+
+.portrait img{
+  object-fit: cover;
+  object-position: 50% 18%;
+  transform: scale(1.02);
+}
+
+.portrait-label{
+  width: fit-content;
+  margin: 16px auto 0;
+  padding: 12px 22px;
+  border-radius: 20px;
+  background: rgba(255, 250, 243, .96);
+  color: var(--green);
+  border: 1px solid #315d4e20;
+  box-shadow: 0 10px 24px #263d3410;
+}
+
+.portrait-label strong{
+  font-size: 18px;
+}
+
+.portrait-label small{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.hero-rays{
+  left: 4%;
+  top: 12%;
+  width: 13%;
+}
+
+.hero-heart{
+  right: 6%;
+  top: 20%;
+  width: 14%;
+  color: #ebcaa4;
+  opacity: .7;
+}
+
+.hero-wave{
+  color: #dbe3df;
+}
+
+@media (min-width: 801px){
+  .hero-shell .wrap.header{
+    background: rgba(255, 249, 241, .94);
+  }
+}
+
+@media (max-width: 760px){
+  .hero{
+    gap: 18px;
+    padding-block: 32px 0;
+  }
+
+  .hero-copy{
+    padding-bottom: 0;
+  }
+
+  .hero-art{
+    max-width: 390px;
+    padding: 8px 8px 36px;
+  }
+
+  .shape-back{
+    inset: 14% 3% 11%;
+    border-width: 1.5px;
+  }
+
+  .portrait{
+    max-width: 310px;
+    aspect-ratio: 4 / 4.45;
+    border-radius: 28px 68px 24px 24px;
+  }
+
+  .portrait img{
+    object-position: 50% 16%;
+    transform: scale(1.05);
+  }
+
+  .portrait-label{
+    margin-top: 12px;
+    padding: 10px 16px;
+  }
+
+  .portrait-label strong{
+    font-size: 17px;
+  }
+
+  .portrait-label small{
+    font-size: 12px;
+  }
+
+  .hero-rays{
+    left: 6%;
+    top: 14%;
+    width: 16%;
+  }
+
+  .hero-heart{
+    right: 8%;
+    top: 18%;
+    width: 16%;
+  }
+}
