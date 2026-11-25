@@ -1,0 +1,23 @@
+/* Paleta aproximada dos materiais fornecidos, não manual oficial. */
+:root {
+  --green: #315d4e;
+  --rose: #315d4e;
+  --primary-hover: #224437;
+  --bg: #fae7ce;
+  --paper: #fffdf9;
+  --ink: #263d34;
+  --muted: #4d6258;
+  --line: #d9dfd2;
+  --sage: #e4efeb;
+  --mint: #a9ddb0;
+  --peach: #fad9b0;
+  --orange: #e88a25;
+  --stage-one: #f9d8af;
+  --stage-two: #cce8d3;
+  --stage-three: #fbe9cd;
+  --stage-four: #dcece6;
+  --process: #e4efeb;
+  --footer: #e4efeb;
+  --body: 'DM Sans', Arial, sans-serif;
+  --allo: Allo, 'DM Sans', Arial, sans-serif;
+}
