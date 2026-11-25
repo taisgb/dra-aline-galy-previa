@@ -156,8 +156,8 @@ footer {
 .hero-shell .hero-features>span { box-shadow: var(--p-shadow-1); }
 @media (min-width: 1001px) {
   .stage-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
-  .stage-grid .stage:first-child { grid-row: span 2; min-height: 420px; }
-  .stage-grid .stage:nth-child(4) { grid-column: span 2; }
+  
+  
   .stage-grid .stage:not(:first-child) { min-height: 205px; }
   
 }
@@ -237,7 +237,7 @@ body { background-color:var(--paper); background-image:radial-gradient(ellipse a
 .stage-grid .stage { border-radius:28px 28px 56px 28px; }
 .stage-grid .stage:first-child { background-color:var(--stage-one); }
 .stage-grid .stage p { font-size:16px; }
-.stage-grid .stage .stage-art { display:block; width:min(100%,220px); height:auto; max-height:175px; margin:0 auto 18px; color:var(--green); stroke-width:1.7; }
+
 
 .stage-grid .stage::before { background:var(--green); }
 .clinical-care { background-color:#f1f7ef; }
@@ -269,8 +269,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid v
 /* Conteúdo nunca depende de animação ou de IntersectionObserver para aparecer. */
 .js .reveal:not(.visible) { opacity:1; transform:none; }
 @media (min-width:1001px) {
-  .stage-grid .stage:first-child { grid-row:span 2; min-height:420px; }
-  .stage-grid .stage:nth-child(4) { grid-column:span 2; }
+  
+  
 }
 @media (max-width:1000px) {
   .hero-shell .hero { gap:24px; }
@@ -350,7 +350,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid v
 .stage-grid .stage { min-width:0; padding:30px 24px; gap:0; border-radius:28px 28px 48px 28px; }
 .stage-grid .stage::before { content:none; }
 .stage-grid .stage > svg:not(.stage-art) { width:40px; height:40px; margin:0 auto 16px; }
-.stage-grid .stage .stage-art { width:min(100%,230px); height:auto; max-height:none; margin:0 auto 18px; }
+
 .stage-grid .stage h3 { margin:0 0 10px; font-size:clamp(22px,2vw,26px); line-height:1.2; }
 .stage-grid .stage p { margin:0; line-height:1.55; }
 .stage-index { top:14px; right:18px; }
@@ -382,8 +382,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid v
 .footer-content { gap:24px; }
 .footer-bottom { margin-top:24px; }
 @media(min-width:1001px) {
-  .stage-grid { grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(200px,auto)); }
-  .stage-grid .stage:first-child { min-height:0; grid-row:span 2; }
+  .stage-grid { grid-template-columns:repeat(3,minmax(0,1fr));  }
+  
   .stage-grid .stage:not(:first-child) { min-height:200px; }
 }
 @media(max-width:1000px) {
@@ -407,7 +407,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid v
   .trust { margin:10px auto 18px; padding:14px 10px; gap:8px; }
   .section-head { gap:10px; margin-bottom:22px; }
   .stage-grid .stage { min-height:0; padding:26px 18px; }
-  .stage-grid .stage .stage-art { width:min(100%,200px); margin-bottom:12px; }
+  
   .clinical-care { margin-top:20px; padding:20px; }
   .about,.clinic,.faq { width:calc(100% - 24px); padding-inline:16px; gap:24px; }
   .process-grid,.unit-grid { grid-template-columns:1fr; gap:14px; }
@@ -425,4 +425,101 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid v
 }
 @media(prefers-reduced-motion:reduce) {
   .stage:hover,.stage:hover>svg,.unit-card:hover,.btn:hover { transform:none; }
+}
+
+
+/* V12.2 — correções da revisão visual: ritmo, consistência e retrato sem área vazia. */
+:root {
+  --panel-gap: clamp(16px, 2vw, 28px);
+  --panel-edge: clamp(8px, 1.2vw, 16px);
+  --p-shadow-1: inset 0 1px 0 #ffffffb3, 0 1px 2px #263d340b, 0 3px 8px #263d3408;
+  --p-shadow-2: inset 0 1px 0 #ffffffb0, 0 2px 4px #263d3410, 0 9px 20px -12px #263d3426, 0 20px 32px -22px #263d3424;
+  --p-shadow-3: inset 0 1px 0 #ffffffaa, 0 3px 7px #263d3413, 0 16px 30px -15px #263d3430, 0 32px 55px -30px #263d3430;
+}
+.hero-shell,.stages,.about,.process,.clinic,.review,.faq,.final-cta {
+  margin-inline:var(--panel-edge);
+  border-radius:clamp(22px,3vw,36px);
+}
+.about,.clinic,.faq {
+  width:auto;
+  margin-block:var(--panel-gap);
+  padding-inline:max(24px,calc((100% - 1180px) / 2));
+}
+.stages,.process,.review,.final-cta { margin-block:var(--panel-gap); }
+.final-cta { margin-bottom:var(--panel-gap); }
+.hero-shell { margin-bottom:0; }
+.trust-shell { margin-bottom:var(--panel-gap); }
+.trust { margin-bottom:0; }
+h2,h3,.trust strong,.review-rating strong { letter-spacing:-.025em; word-spacing:.025em; }
+h2 em { letter-spacing:-.025em; }
+.hero-shell h1 { letter-spacing:-.035em; word-spacing:.025em; }
+.hero-shell h1 span { letter-spacing:-.025em; }
+.brand small { font-size:12px; letter-spacing:.2em; }
+.header.wrap { box-shadow:var(--p-shadow-2); }
+.btn,.hero-shell .hero-actions .btn,.unit-book {
+  box-shadow:inset 0 1px 0 #ffffff40,inset 0 -1px 0 #00000015,0 2px 4px #263d3413,0 8px 16px -9px #315d4e50;
+}
+.hero-shell .hero-actions .hero-secondary,.btn.light { box-shadow:var(--p-shadow-1); }
+.hero-shell .hero-art .shape-back { box-shadow:var(--p-shadow-2); }
+.hero-shell .portrait { box-shadow:var(--p-shadow-2); }
+.hero-shell .portrait img { height:100%; object-fit:contain; }
+.hero-shell .portrait-label { line-height:1.4; }
+.stage-grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:1fr; gap:var(--card-gap); }
+.stage-grid .stage,.stage-grid .stage:first-child,.stage-grid .stage:not(:first-child),.stage-grid .stage:nth-child(4) {
+  grid-row:auto; grid-column:auto; min-height:220px;
+  padding:32px 22px 26px;
+  justify-content:center;
+}
+.stage-grid .stage > svg { width:40px; height:40px; margin:0 auto 16px; }
+.stage-grid .stage h3 { min-height:0; }
+.stage-grid .stage p { max-width:34ch; }
+.clinical-care { grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); align-items:center; }
+.clinical-care .care-art { display:none; }
+.clinical-care > div { min-width:0; }
+.about .about-visual { align-self:center; height:auto; min-height:0; }
+.about .about-portrait {
+  display:block; width:100%; height:auto; min-height:0; max-height:none;
+  margin:0; padding:0; aspect-ratio:auto;
+}
+.about .about-portrait img {
+  display:block; width:100%; height:auto; min-height:0; max-height:none;
+  aspect-ratio:auto; object-fit:contain; object-position:center top; margin:0;
+}
+.about .about-portrait .photo-tag {
+  display:block; position:static; width:100%; height:auto; min-height:0; margin:0;
+  padding:14px 18px 16px; line-height:1.45;
+}
+.about .photo-tag small { font-size:14px; }
+.unit-grid .unit-card { box-shadow:var(--p-shadow-2); }
+.unit-grid .unit-card p { max-width:32ch; }
+.review-inner { grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr); }
+.review-rating { min-width:0; padding-left:24px; }
+.review-rating .textlink { width:100%; max-width:100%; gap:6px; justify-content:center; text-align:center; }
+.review-rating .textlink svg { width:16px; height:16px; flex-shrink:0; }
+footer { margin-top:0; }
+@media(min-width:1120px) {
+  .stage-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .stage-grid .stage,.stage-grid .stage:first-child,.stage-grid .stage:not(:first-child) { min-height:250px; }
+  .clinical-care { grid-template-columns:200px minmax(0,1fr) minmax(0,1fr); gap:24px; }
+  .clinical-care .care-art { display:block; width:200px; height:auto; }
+}
+@media(max-width:800px) {
+  .about,.clinic,.faq { width:auto; margin-inline:var(--panel-edge); padding-inline:20px; }
+  .about .about-visual { max-width:340px; }
+  .about .about-portrait .photo-tag { padding:14px 16px; }
+  .stage-grid .stage,.stage-grid .stage:first-child,.stage-grid .stage:not(:first-child),.stage-grid .stage:nth-child(4) { min-height:200px; padding:26px 18px; }
+  .clinical-care,.review-inner { grid-template-columns:minmax(0,1fr); }
+  .review-rating { padding-left:0; }
+  .hero-shell h1 { overflow-wrap:normal; }
+}
+@media(max-width:480px) {
+  .stage-grid { grid-template-columns:minmax(0,1fr); grid-auto-rows:auto; gap:12px; }
+  .stage-grid .stage,.stage-grid .stage:first-child,.stage-grid .stage:not(:first-child),.stage-grid .stage:nth-child(4) { min-height:0; padding:24px 20px; }
+  .stage-grid .stage > svg { width:36px; height:36px; margin-bottom:12px; }
+  .stage-grid .stage h3 { font-size:22px; margin-bottom:8px; }
+  .stage-grid .stage p { line-height:1.5; }
+  .about,.clinic,.faq { padding-inline:16px; }
+  .about .about-visual { padding:0 10px 10px 0; }
+  .about .about-portrait { border-radius:28px 60px 22px 22px; }
+  .review-rating .textlink { width:auto; }
 }
